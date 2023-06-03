@@ -8,6 +8,7 @@ crispy-tailwind = "*"
 django = "*"
 django-crispy-forms = "*"
 djangorestframework = "*"
+gunicorn = "*"
 
 [dev-packages]
 
