@@ -10,7 +10,7 @@ services:
     volumes:
       - static_value:/kanban/static/
       - media_value:/kanban/media/
-      - ./db.sqlite3:/kanban/db.sqlite3
+      - db_value:/kanban/db/
     env_file:
       - ./.env
 
@@ -30,3 +30,4 @@ services:
 volumes:
   static_value:
   media_value:
+  db_value:
