@@ -97,7 +97,7 @@ REST_FRAMEWORK = {
 
 LANGUAGE_CODE = 'ru-Ru'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Europe/Amsterdam'
 
 USE_I18N = True
 
