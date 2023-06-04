@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Task(models.Model):
-    class boardNames(models.TextChoices):
+    class BoardNames(models.TextChoices):
         ToDo = 'Сделать'
         InProgress = 'В процессе'
         Review = 'На проверке'
@@ -24,10 +24,10 @@ class Task(models.Model):
     name = models.CharField(
         max_length=500,
     )
-    boardName = models.CharField(
+    board_name = models.CharField(
         max_length=12,
-        choices=boardNames.choices,
-        default=boardNames.ToDo,
+        choices=BoardNames.choices,
+        default=BoardNames.ToDo,
     )
     date = models.DateTimeField(
         auto_now_add=True,
