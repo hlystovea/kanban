@@ -16,8 +16,8 @@ def home(request):
         t_dict = {
             'uuid': str(t.uuid),
             'name': t.name if t.name is not None else 'Без названия',
-            'boardName': t.boardName,
-            'date': str(localize(t.date))
+            'boardName': t.board_name,
+            'date': str(localize(t.date)),
         }
         all_tasks.append(t_dict)
     return render(request, 'index.html', {'tasks': all_tasks})
@@ -26,41 +26,42 @@ def home(request):
 def register_request(request):
     if request.method == 'POST':
         form = NewUserForm(request.POST)
+
         if form.is_valid():
             user = form.save()
             login(request, user)
-            messages.success(request,
-                             'Аккаунт зарегистрирован: '
-                             'добро пожаловать на сайт!')
+            msg = 'Аккаунт зарегистрирован: добро пожаловать на сайт!'
+            messages.success(request, msg)
             return redirect('board:login')
-        messages.error(request, 'Не удалось зарегистрировать аккаунт. '
-                                'Проверьте корректность данных и '
-                                'попробуйте еще раз!')
+
+        msg = ('Не удалось зарегистрировать аккаунт. '
+               'Проверьте корректность данных и попробуйте еще раз!')
+        messages.error(request, msg)
+
     form = NewUserForm()
-    return render(request=request,
-                  template_name='register.html',
-                  context={'register_form': form})
+    return render(request, 'register.html', context={'register_form': form})
 
 
 def login_request(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, data=request.POST)
+
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=username, password=password)
+
             if user is not None:
                 login(request, user)
-                messages.info(request,
-                              f'Вы вошли на сайт под ником {username}.')
+                messages.info(
+                    request, f'Вы вошли на сайт под ником {username}.'
+                )
                 return redirect('board:home')
-            else:
-                messages.error(request, 'Неверные имя и/или пароль.')
-        else:
-            messages.error(request, 'Неверные имя и/или пароль.')
+
+        messages.error(request, 'Неверные имя и/или пароль.')
+
     form = AuthenticationForm()
-    return render(request=request, template_name='login.html',
-                  context={'login_form': form})
+    return render(request, 'login.html', context={'login_form': form})
 
 
 def logout_request(request):

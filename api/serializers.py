@@ -10,7 +10,7 @@ class TaskSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ('uuid', 'name', 'boardName', 'date', 'owner')
+        fields = ('uuid', 'name', 'board_name', 'date', 'owner')
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -18,4 +18,4 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'tasks']
+        fields = ('id', 'username', 'tasks')

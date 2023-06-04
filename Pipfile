@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+crispy-tailwind = "*"
+django = "*"
+django-crispy-forms = "*"
+djangorestframework = "*"
+gunicorn = "*"
+djangorestframework-camel-case = "*"
+
+[dev-packages]
+flake8 = "*"
+flake8-broken-line = "*"
+flake8-return = "*"
+pep8-naming = "*"
+flake8-import-order = "*"
+
+[requires]
+python_version = "3.11"
